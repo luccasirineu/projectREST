@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.luccasdev.springProject.data.dto.v1.PersonDTO;
 import com.luccasdev.springProject.exceptions.ResourceNotFoundException;
-import com.luccasdev.springProject.models.Person;
 import com.luccasdev.springProject.repositories.PersonRepository;
 
 @Service
@@ -17,22 +17,22 @@ public class PersonService {
 	PersonRepository personRepository;
 	
 	
-	public Person findById(Long id) {
+	public PersonDTO findById(Long id) {
 		return personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
 	}
 	
-	public List<Person> findAll(){
+	public List<PersonDTO> findAll(){
 		
 		return personRepository.findAll() ;
 	}
 	
 	
-	public Person create(Person person) {
+	public PersonDTO create(PersonDTO person) {
 		return personRepository.save(person); 
 	}
 	
-	public Person update(Person person) {
-		Person entity = personRepository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+	public PersonDTO update(PersonDTO person) {
+		PersonDTO entity = personRepository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
 		
 		
 		entity.setFirstName(person.getFirstName());
@@ -40,12 +40,12 @@ public class PersonService {
 		entity.setAddress(person.getAddress());
 		entity.setGender(person.getGender());
 		
-		return personRepository.save(person); 
+		return personRepository.save(entity); 
 	}
 	
 	public void delete(Long id) {
 		
-		Person person = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+		PersonDTO person = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
 		personRepository.delete(person);
 		
 	}

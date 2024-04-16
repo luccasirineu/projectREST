@@ -3,6 +3,7 @@ package com.luccasdev.springProject.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.luccasdev.springProject.models.Person;
+import com.luccasdev.springProject.data.dto.v1.PersonDTO;
 import com.luccasdev.springProject.services.PersonService;
 
 @RestController
@@ -24,29 +25,30 @@ public class PersonController {
 
 	
 	@GetMapping(value = "/{id}")
-	public Person findById( @PathVariable(value = "id") Long id) throws Exception{
+	public PersonDTO findById( @PathVariable(value = "id") Long id) throws Exception{
 		
 		return personService.findById(id);
 	}
 	
 	@GetMapping
-	public List<Person> findAll(){
+	public List<PersonDTO> findAll(){
 		return personService.findAll();
 	}
 	
 	@PostMapping
-	public Person create(@RequestBody Person person){
+	public PersonDTO create(@RequestBody PersonDTO person){
 		return personService.create(person);
 	}
 	
 	@PutMapping
-	public Person update(@RequestBody Person person){
+	public PersonDTO update(@RequestBody PersonDTO person){
 		return personService.update(person);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public void delete(@RequestBody Long id){
+	public ResponseEntity<Void> delete(@PathVariable Long id){
 		personService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 	
