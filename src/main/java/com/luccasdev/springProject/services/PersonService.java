@@ -1,52 +1,52 @@
 package com.luccasdev.springProject.services;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.luccasdev.springProject.exceptions.ResourceNotFoundException;
 import com.luccasdev.springProject.models.Person;
+import com.luccasdev.springProject.repositories.PersonRepository;
 
 @Service
 public class PersonService {
 	
-	private final AtomicLong counter = new AtomicLong();
 	
-	public Person findById(String id) {
-		Person person = new Person(counter.incrementAndGet(), "Luccas", "Costa", "Rua Virginia", "Male");
-		return person;
+	@Autowired
+	PersonRepository personRepository;
+	
+	
+	public Person findById(Long id) {
+		return personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
 	}
 	
 	public List<Person> findAll(){
-		List<Person> persons = new ArrayList<>();
-		Person person1 = new Person(counter.incrementAndGet(), "Luccas", "Costa", "Rua Virginia", "Male");
-		Person person2 = new Person(counter.incrementAndGet(), "Roberto", "Silva", "Rua Virginia", "Male");
-		Person person3 = new Person(counter.incrementAndGet(), "Carla", "Lima", "Rua Itapecirica", "Female");
-		Person person4 = new Person(counter.incrementAndGet(), "Ramirez", "Souza", "Rua Virginia", "Male");
-		Person person5 = new Person(counter.incrementAndGet(), "Ana", "Moreira", "Rua Virginia", "Female");
 		
-		persons.add(person1);
-		persons.add(person2);
-		persons.add(person3);
-		persons.add(person4);
-		persons.add(person5);
-		
-		
-		return persons ;
+		return personRepository.findAll() ;
 	}
 	
 	
 	public Person create(Person person) {
-		return person; 
+		return personRepository.save(person); 
 	}
 	
 	public Person update(Person person) {
-		return person; 
+		Person entity = personRepository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+		
+		
+		entity.setFirstName(person.getFirstName());
+		entity.setLastName(person.getLastName());
+		entity.setAddress(person.getAddress());
+		entity.setGender(person.getGender());
+		
+		return personRepository.save(person); 
 	}
 	
-	public void delete(String id) {
+	public void delete(Long id) {
 		
+		Person person = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+		personRepository.delete(person);
 		
 	}
 }

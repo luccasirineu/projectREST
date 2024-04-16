@@ -24,7 +24,7 @@ public class PersonController {
 
 	
 	@GetMapping(value = "/{id}")
-	public Person findById( @PathVariable(value = "id") String id) throws Exception{
+	public Person findById( @PathVariable(value = "id") Long id) throws Exception{
 		
 		return personService.findById(id);
 	}
@@ -45,7 +45,7 @@ public class PersonController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public void delete(@RequestBody String id){
+	public void delete(@RequestBody Long id){
 		personService.delete(id);
 	}
 	
