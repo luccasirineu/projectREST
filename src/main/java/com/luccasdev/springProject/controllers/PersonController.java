@@ -18,7 +18,7 @@ import com.luccasdev.springProject.data.dto.v2.PersonDTOv2;
 import com.luccasdev.springProject.services.PersonService;
 
 @RestController
-@RequestMapping(value = "/person")
+@RequestMapping(value = "/api/person/v1")
 public class PersonController {
 	
 	@Autowired
