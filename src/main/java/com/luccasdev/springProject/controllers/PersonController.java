@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.luccasdev.springProject.data.dto.v1.PersonDTO;
+import com.luccasdev.springProject.data.dto.v2.PersonDTOv2;
 import com.luccasdev.springProject.services.PersonService;
 
 @RestController
@@ -38,6 +39,11 @@ public class PersonController {
 	@PostMapping
 	public PersonDTO create(@RequestBody PersonDTO person){
 		return personService.create(person);
+	}
+	
+	@PostMapping(value = "/v2")
+	public PersonDTOv2 createV2(@RequestBody PersonDTOv2 person){
+		return personService.createV2(person);
 	}
 	
 	@PutMapping
