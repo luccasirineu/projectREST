@@ -13,7 +13,7 @@ public class WebConfig implements WebMvcConfigurer{
 		// TODO Auto-generated method stub
 		WebMvcConfigurer.super.configureContentNegotiation(configurer);
 		
-		configurer.favorParameter(true).parameterName("mediaType").ignoreAcceptHeader(true)
+		configurer.favorParameter(false).ignoreAcceptHeader(false)
 		.useRegisteredExtensionsOnly(false)
 		.defaultContentType(MediaType.APPLICATION_JSON)
 		.mediaType("json", MediaType.APPLICATION_JSON)
