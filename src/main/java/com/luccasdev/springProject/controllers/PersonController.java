@@ -3,6 +3,7 @@ package com.luccasdev.springProject.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,28 +26,33 @@ public class PersonController {
 	public PersonService personService;
 
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}, 
+				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE},value = "/{id}" )
 	public PersonDTO findById( @PathVariable(value = "id") Long id) throws Exception{
 		
 		return personService.findById(id);
 	}
 	
-	@GetMapping
+	@GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}, 
+				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	public List<PersonDTO> findAll(){
 		return personService.findAll();
 	}
 	
-	@PostMapping
+	@PostMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}, 
+				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	public PersonDTO create(@RequestBody PersonDTO person){
 		return personService.create(person);
 	}
 	
-	@PostMapping(value = "/v2")
+	@PostMapping(value = "/v2", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}, 
+								consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	public PersonDTOv2 createV2(@RequestBody PersonDTOv2 person){
 		return personService.createV2(person);
 	}
 	
-	@PutMapping
+	@PutMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}, 
+				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	public PersonDTO update(@RequestBody PersonDTO person){
 		return personService.update(person);
 	}
