@@ -26,33 +26,33 @@ public class PersonController {
 	public PersonService personService;
 
 	
-	@GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}, 
-				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE},value = "/{id}" )
+	@GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,"Application/x-yaml"}, 
+				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE,"Application/x-yaml"},value = "/{id}" )
 	public PersonDTO findById( @PathVariable(value = "id") Long id) throws Exception{
 		
 		return personService.findById(id);
 	}
 	
-	@GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}, 
-				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+	@GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,"Application/x-yaml"}, 
+				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE,"Application/x-yaml"})
 	public List<PersonDTO> findAll(){
 		return personService.findAll();
 	}
 	
-	@PostMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}, 
-				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+	@PostMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,"Application/x-yaml"}, 
+				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE,"Application/x-yaml"})
 	public PersonDTO create(@RequestBody PersonDTO person){
 		return personService.create(person);
 	}
 	
-	@PostMapping(value = "/v2", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}, 
-								consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+	@PostMapping(value = "/v2", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,"Application/x-yaml"}, 
+								consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE,"Application/x-yaml"})
 	public PersonDTOv2 createV2(@RequestBody PersonDTOv2 person){
 		return personService.createV2(person);
 	}
 	
-	@PutMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}, 
-				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+	@PutMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,"Application/x-yaml"}, 
+				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE, "Application/x-yaml"})
 	public PersonDTO update(@RequestBody PersonDTO person){
 		return personService.update(person);
 	}
