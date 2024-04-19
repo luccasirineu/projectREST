@@ -41,7 +41,7 @@ public class PersonController {
 	
 	@PostMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,"Application/x-yaml"}, 
 				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE,"Application/x-yaml"})
-	public PersonDTO create(@RequestBody PersonDTO person){
+	public PersonDTO create(@RequestBody PersonDTO person) throws Exception{
 		return personService.create(person);
 	}
 	
@@ -53,7 +53,7 @@ public class PersonController {
 	
 	@PutMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,"Application/x-yaml"}, 
 				consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE, "Application/x-yaml"})
-	public PersonDTO update(@RequestBody PersonDTO person){
+	public PersonDTO update(@RequestBody PersonDTO person) throws Exception{
 		return personService.update(person);
 	}
 	
