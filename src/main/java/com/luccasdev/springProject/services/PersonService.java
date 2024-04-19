@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+
+import com.luccasdev.springProject.controllers.PersonController;
 import com.luccasdev.springProject.data.dto.v1.PersonDTO;
 import com.luccasdev.springProject.data.dto.v2.PersonDTOv2;
 import com.luccasdev.springProject.exceptions.ResourceNotFoundException;
@@ -24,9 +28,11 @@ public class PersonService {
 	PersonMapper personMapper;
 	
 	
-	public PersonDTO findById(Long id) {
+	public PersonDTO findById(Long id) throws Exception  {
 		var entity = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
-		return DozerMapper.parseObject(entity, PersonDTO.class);
+		PersonDTO dto = DozerMapper.parseObject(entity, PersonDTO.class);
+		dto.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+		return dto ;
 	}
 	
 	public List<PersonDTO> findAll(){
@@ -43,7 +49,7 @@ public class PersonService {
 	}
 	
 	public PersonDTO update(PersonDTO person) {
-		Person entity = personRepository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+		Person entity = personRepository.findById(person.getKey()).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
 		
 		
 		entity.setFirstName(person.getFirstName());
