@@ -19,18 +19,18 @@ public class WebConfig implements WebMvcConfigurer{
 	//	converters.add(new YamlJackson2HttpMesageConverter());
 	//}
 
-	@Override
-	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+	//@Override
+	//public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		
 		
-		configurer.favorParameter(false)
-		.ignoreAcceptHeader(false)
-		.useRegisteredExtensionsOnly(false)
-		.defaultContentType(MediaType.APPLICATION_JSON)
-			.mediaType("json", MediaType.APPLICATION_JSON)
-			.mediaType("xml", MediaType.APPLICATION_XML)
-			.mediaType("x-yaml", MEDIA_TYPE_APPLICATION_YML)
-			;
-	}
+	//	configurer.favorParameter(false)
+	//	.ignoreAcceptHeader(false)
+	//	.useRegisteredExtensionsOnly(false)
+	//	.defaultContentType(MediaType.APPLICATION_JSON)
+	//		.mediaType("json", MediaType.APPLICATION_JSON)
+	//		.mediaType("xml", MediaType.APPLICATION_XML)
+	//		.mediaType("x-yaml", MEDIA_TYPE_APPLICATION_YML)
+	//		;
+	//}
 
 }
