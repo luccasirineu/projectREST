@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.luccasdev.springProject.data.dto.v1.BookDTO;
 import com.luccasdev.springProject.data.dto.v1.PersonDTO;
-import com.luccasdev.springProject.data.dto.v2.PersonDTOv2;
+
 import com.luccasdev.springProject.services.BookService;
-import com.luccasdev.springProject.services.PersonService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

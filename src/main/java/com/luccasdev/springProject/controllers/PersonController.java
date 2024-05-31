@@ -50,7 +50,7 @@ public class PersonController {
 		return personService.findById(id);
 	}
 	
-	@GetMapping
+	@GetMapping(value = "/people")
 	@Operation(summary = " Finds all people", description = "Finds all people",
 	tags = {"People"},
 	responses = {
