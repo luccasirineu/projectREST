@@ -50,7 +50,7 @@ public class SecurityConfig {
 
         JwtTokenFilter customFilter = new JwtTokenFilter(tokenProvider);
 
-        //@formatter:off
+
         return http
                 .httpBasic(basic -> basic.disable())
                 .csrf(csrf -> csrf.disable())
@@ -60,7 +60,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authorizeHttpRequests -> authorizeHttpRequests
                                 .requestMatchers(
-                                        "/auth/signin",
+                                        "/auth/login",
                                         "/auth/refresh/**",
                                         "/swagger-ui/**",
                                         "/v3/api-docs/**"

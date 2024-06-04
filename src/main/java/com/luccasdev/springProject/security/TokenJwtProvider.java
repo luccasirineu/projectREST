@@ -14,13 +14,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
-
+@Component
 public class TokenJwtProvider {
     // caso nao exista no application.yml ele ira setar esses valores como padrao
     @Value("${security.jwt.token.secret-key:secret}")
